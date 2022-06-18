@@ -6,6 +6,8 @@ import FormularioTareas from './components/FormularioTareas';
 import ListaTareas from './components/ListaTareas';
 
 const App = () => {
+
+  // Hook useState
   const [tareas, cambiarTareas] = useState(
     [
       {
@@ -18,12 +20,12 @@ const App = () => {
         texto: 'Hacer la comida',
         completada: false
       }
-    ],[]) // El segundo parámetro es un array vacío, porque no queremos que se ejecute ninguna función al iniciar la aplicación.;
+    ]) 
   return (
     <div className="contenedor">
       <Header />
       <FormularioTareas tareas={tareas} cambiarTareas={cambiarTareas}/>
-      <ListaTareas tareas={tareas}/>
+      <ListaTareas tareas={tareas} cambiarTareas={cambiarTareas}/>
     </div>
   );
 }

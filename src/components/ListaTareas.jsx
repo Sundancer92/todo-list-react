@@ -1,8 +1,40 @@
 import React from 'react'
-
 import Tarea from './Tarea'
 
-const ListaTareas = ({tareas}) => {
+const ListaTareas = ({tareas, cambiarTareas}) => {
+    const toggleCompletada = (id) => {
+        cambiarTareas(tareas.map( (tarea) => {
+            if (tarea.id === id) {
+                return {
+                    ...tarea,
+                    completada: !tarea.completada
+                }
+            }
+            return tarea
+        } ))
+    }
+    
+    const editarTarea = (id, nuevoTexto) => {
+        cambiarTareas(tareas.map( (tarea) => {
+            if (tarea.id === id) {
+                return {
+                    ...tarea,
+                    texto: nuevoTexto
+                }
+            }
+            return tarea
+        } ))
+    }
+
+    const borrarTarea = (id) => {
+        cambiarTareas(tareas.filter((tarea) => {
+            if (tarea.id !== id) {
+                return tarea;
+            }
+            return;
+        }))
+    }
+
     const listaTareas = tareas.map(tarea => (
         <li key={tarea.id} className=''>
             {tarea.texto}
@@ -17,6 +49,9 @@ const ListaTareas = ({tareas}) => {
                     <Tarea 
                         id={tarea.id}
                         tarea={tarea}
+                        toggleCompletada={toggleCompletada}
+                        editarTarea={editarTarea}
+                        borrarTarea={borrarTarea}
                     />
                 )  
             })
