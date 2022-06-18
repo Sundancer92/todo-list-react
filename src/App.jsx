@@ -21,11 +21,24 @@ const App = () => {
         completada: false
       }
     ]) 
+
+    const [mostrarCompletadas, cambiarMostrarCompletadas] = useState(false);
+
   return (
     <div className="contenedor">
-      <Header />
-      <FormularioTareas tareas={tareas} cambiarTareas={cambiarTareas}/>
-      <ListaTareas tareas={tareas} cambiarTareas={cambiarTareas}/>
+      <Header 
+        mostrarCompletadas={mostrarCompletadas}
+        cambiarMostrarCompletadas={cambiarMostrarCompletadas}
+      />
+      <FormularioTareas 
+        tareas={tareas} 
+        cambiarTareas={cambiarTareas}
+      />
+      <ListaTareas 
+        tareas={tareas} 
+        cambiarTareas={cambiarTareas} 
+        mostrarCompletadas={mostrarCompletadas}
+      />
     </div>
   );
 }
